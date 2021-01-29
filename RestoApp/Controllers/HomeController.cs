@@ -7,6 +7,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
+//Controlador 
+
 namespace RestoApp.Controllers
 {
     public class HomeController : Controller
