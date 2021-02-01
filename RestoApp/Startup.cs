@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using RestoApp.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +26,10 @@ namespace RestoApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<RestoAppDB>(options =>
+             options.UseSqlServer(Configuration.GetConnectionString("RestoApp")));
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
