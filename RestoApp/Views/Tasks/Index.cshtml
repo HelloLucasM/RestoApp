@@ -1,0 +1,48 @@
+﻿@model IEnumerable<RestoApp.Models.Task>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Lista de tareas</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Area_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Task_Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee_ID)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Area_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Task_Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee_ID)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Task_ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Task_ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Task_ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

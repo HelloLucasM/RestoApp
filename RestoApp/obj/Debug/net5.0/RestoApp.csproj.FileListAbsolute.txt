@@ -179,3 +179,13 @@ C:\Users\Lucas\Desktop\RestoApp\RestoApp\obj\Debug\net5.0\Razor\Views\Employees\
 C:\Users\Lucas\Desktop\RestoApp\RestoApp\obj\Debug\net5.0\Razor\Views\Employees\Details.cshtml.g.cs
 C:\Users\Lucas\Desktop\RestoApp\RestoApp\obj\Debug\net5.0\Razor\Views\Employees\Edit.cshtml.g.cs
 C:\Users\Lucas\Desktop\RestoApp\RestoApp\obj\Debug\net5.0\Razor\Views\Employees\Index.cshtml.g.cs
+C:\Users\Lucas\Desktop\RestoApp\RestoApp\obj\Debug\net5.0\Razor\Views\Areas\Create.cshtml.g.cs
+C:\Users\Lucas\Desktop\RestoApp\RestoApp\obj\Debug\net5.0\Razor\Views\Areas\Delete.cshtml.g.cs
+C:\Users\Lucas\Desktop\RestoApp\RestoApp\obj\Debug\net5.0\Razor\Views\Areas\Details.cshtml.g.cs
+C:\Users\Lucas\Desktop\RestoApp\RestoApp\obj\Debug\net5.0\Razor\Views\Areas\Edit.cshtml.g.cs
+C:\Users\Lucas\Desktop\RestoApp\RestoApp\obj\Debug\net5.0\Razor\Views\Areas\Index.cshtml.g.cs
+C:\Users\Lucas\Desktop\RestoApp\RestoApp\obj\Debug\net5.0\Razor\Views\Tasks\Create.cshtml.g.cs
+C:\Users\Lucas\Desktop\RestoApp\RestoApp\obj\Debug\net5.0\Razor\Views\Tasks\Delete.cshtml.g.cs
+C:\Users\Lucas\Desktop\RestoApp\RestoApp\obj\Debug\net5.0\Razor\Views\Tasks\Details.cshtml.g.cs
+C:\Users\Lucas\Desktop\RestoApp\RestoApp\obj\Debug\net5.0\Razor\Views\Tasks\Edit.cshtml.g.cs
+C:\Users\Lucas\Desktop\RestoApp\RestoApp\obj\Debug\net5.0\Razor\Views\Tasks\Index.cshtml.g.cs

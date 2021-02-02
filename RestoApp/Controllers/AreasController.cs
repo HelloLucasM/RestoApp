@@ -10,22 +10,22 @@ using RestoApp.Models;
 
 namespace RestoApp.Controllers
 {
-    public class EmployeesController : Controller
+    public class AreasController : Controller
     {
         private readonly RestoAppDB _context;
 
-        public EmployeesController(RestoAppDB context)
+        public AreasController(RestoAppDB context)
         {
             _context = context;
         }
 
-        // GET: Employees
+        // GET: Areas
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Employees.ToListAsync());
+            return View(await _context.Areas.ToListAsync());
         }
 
-        // GET: Employees/Details/5
+        // GET: Areas/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,42 +33,39 @@ namespace RestoApp.Controllers
                 return NotFound();
             }
 
-            var employee = await _context.Employees
-                .FirstOrDefaultAsync(m => m.Employee_ID == id);
-            if (employee == null)
+            var area = await _context.Areas
+                .FirstOrDefaultAsync(m => m.Area_ID == id);
+            if (area == null)
             {
                 return NotFound();
             }
 
-            return View(employee);
+            return View(area);
         }
 
-        // GET: Employees/Create
+        // GET: Areas/Create
         public IActionResult Create()
         {
-            
             return View();
         }
 
-        // POST: Employees/Create
+        // POST: Areas/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Employee_ID,First_Name,Last_Name,Dni,Area_ID")] Employee employee)
+        public async Task<IActionResult> Create([Bind("Area_ID,Area_Name")] Area area)
         {
-      
-
             if (ModelState.IsValid)
             {
-                _context.Add(employee);
+                _context.Add(area);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(employee);
+            return View(area);
         }
 
-        // GET: Employees/Edit/5
+        // GET: Areas/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -76,22 +73,22 @@ namespace RestoApp.Controllers
                 return NotFound();
             }
 
-            var employee = await _context.Employees.FindAsync(id);
-            if (employee == null)
+            var area = await _context.Areas.FindAsync(id);
+            if (area == null)
             {
                 return NotFound();
             }
-            return View(employee);
+            return View(area);
         }
 
-        // POST: Employees/Edit/5
+        // POST: Areas/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Employee_ID,First_Name,Last_Name,Dni,Area_ID")] Employee employee)
+        public async Task<IActionResult> Edit(int id, [Bind("Area_ID,Area_Name")] Area area)
         {
-            if (id != employee.Employee_ID)
+            if (id != area.Area_ID)
             {
                 return NotFound();
             }
@@ -100,12 +97,12 @@ namespace RestoApp.Controllers
             {
                 try
                 {
-                    _context.Update(employee);
+                    _context.Update(area);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EmployeeExists(employee.Employee_ID))
+                    if (!AreaExists(area.Area_ID))
                     {
                         return NotFound();
                     }
@@ -116,10 +113,10 @@ namespace RestoApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(employee);
+            return View(area);
         }
 
-        // GET: Employees/Delete/5
+        // GET: Areas/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -127,30 +124,30 @@ namespace RestoApp.Controllers
                 return NotFound();
             }
 
-            var employee = await _context.Employees
-                .FirstOrDefaultAsync(m => m.Employee_ID == id);
-            if (employee == null)
+            var area = await _context.Areas
+                .FirstOrDefaultAsync(m => m.Area_ID == id);
+            if (area == null)
             {
                 return NotFound();
             }
 
-            return View(employee);
+            return View(area);
         }
 
-        // POST: Employees/Delete/5
+        // POST: Areas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var employee = await _context.Employees.FindAsync(id);
-            _context.Employees.Remove(employee);
+            var area = await _context.Areas.FindAsync(id);
+            _context.Areas.Remove(area);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EmployeeExists(int id)
+        private bool AreaExists(int id)
         {
-            return _context.Employees.Any(e => e.Employee_ID == id);
+            return _context.Areas.Any(e => e.Area_ID == id);
         }
     }
 }
