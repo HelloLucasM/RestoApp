@@ -20,10 +20,26 @@ namespace RestoApp.Controllers
         }
 
         // GET: Employees
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _context.Employees.ToListAsync());
+            var employees = from m in _context.Employees
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                employees = employees.Where(s => s.First_Name.Contains(searchString));
+            }
+
+            return View(await employees.ToListAsync());
         }
+
+
+        [HttpPost]
+        public string Index(string searchString, bool notUsed)
+        {
+            return "From [HttpPost]Index: filter on " + searchString;
+        }
+
 
         // GET: Employees/Details/5
         public async Task<IActionResult> Details(int? id)
