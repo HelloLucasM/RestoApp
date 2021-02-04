@@ -7,27 +7,25 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RestoApp.Data;
 using RestoApp.Models;
-using Task = RestoApp.Models.Task;
 
 namespace RestoApp.Controllers
 {
-
-    public class TasksController : Controller
+    public class TareasController : Controller
     {
         private readonly RestoAppDB _context;
 
-        public TasksController(RestoAppDB context)
+        public TareasController(RestoAppDB context)
         {
             _context = context;
         }
 
-        // GET: Tasks
+        // GET: Tareas
         public async Task<IActionResult> Index()
         {
             return View(await _context.Tasks.ToListAsync());
         }
 
-        // GET: Tasks/Details/5
+        // GET: Tareas/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -35,39 +33,39 @@ namespace RestoApp.Controllers
                 return NotFound();
             }
 
-            var task = await _context.Tasks
+            var tarea = await _context.Tasks
                 .FirstOrDefaultAsync(m => m.Task_ID == id);
-            if (task == null)
+            if (tarea == null)
             {
                 return NotFound();
             }
 
-            return View(task);
+            return View(tarea);
         }
 
-        // GET: Tasks/Create
+        // GET: Tareas/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Tasks/Create
+        // POST: Tareas/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Task_ID,Area_ID,Task_Description,Employee_ID")] Task task)
+        public async Task<IActionResult> Create([Bind("Task_ID,Area_ID,Task_Description,Employee_ID")] Tarea tarea)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(task);
+                _context.Add(tarea);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(task);
+            return View(tarea);
         }
 
-        // GET: Tasks/Edit/5
+        // GET: Tareas/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -75,22 +73,22 @@ namespace RestoApp.Controllers
                 return NotFound();
             }
 
-            var task = await _context.Tasks.FindAsync(id);
-            if (task == null)
+            var tarea = await _context.Tasks.FindAsync(id);
+            if (tarea == null)
             {
                 return NotFound();
             }
-            return View(task);
+            return View(tarea);
         }
 
-        // POST: Tasks/Edit/5
+        // POST: Tareas/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Task_ID,Area_ID,Task_Description,Employee_ID")] Task task)
+        public async Task<IActionResult> Edit(int id, [Bind("Task_ID,Area_ID,Task_Description,Employee_ID")] Tarea tarea)
         {
-            if (id != task.Task_ID)
+            if (id != tarea.Task_ID)
             {
                 return NotFound();
             }
@@ -99,12 +97,12 @@ namespace RestoApp.Controllers
             {
                 try
                 {
-                    _context.Update(task);
+                    _context.Update(tarea);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!TaskExists(task.Task_ID))
+                    if (!TareaExists(tarea.Task_ID))
                     {
                         return NotFound();
                     }
@@ -115,10 +113,10 @@ namespace RestoApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(task);
+            return View(tarea);
         }
 
-        // GET: Tasks/Delete/5
+        // GET: Tareas/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -126,28 +124,28 @@ namespace RestoApp.Controllers
                 return NotFound();
             }
 
-            var task = await _context.Tasks
+            var tarea = await _context.Tasks
                 .FirstOrDefaultAsync(m => m.Task_ID == id);
-            if (task == null)
+            if (tarea == null)
             {
                 return NotFound();
             }
 
-            return View(task);
+            return View(tarea);
         }
 
-        // POST: Tasks/Delete/5
+        // POST: Tareas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var task = await _context.Tasks.FindAsync(id);
-            _context.Tasks.Remove(task);
+            var tarea = await _context.Tasks.FindAsync(id);
+            _context.Tasks.Remove(tarea);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool TaskExists(int id)
+        private bool TareaExists(int id)
         {
             return _context.Tasks.Any(e => e.Task_ID == id);
         }

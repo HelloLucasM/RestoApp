@@ -17,9 +17,9 @@ namespace RestoApp.Data
 
        public DbSet<Employee> Employees { get; set; }
 
-        public DbSet<Area> Areas { get; set; }
+       public DbSet<Area> Areas { get; set; }
 
-       public DbSet<Task> Tasks { get; set; }
+       public DbSet<Tarea> Tasks { get; set; }
 
     }
 }

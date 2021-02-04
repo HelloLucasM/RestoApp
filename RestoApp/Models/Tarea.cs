@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RestoApp.Models
 {
-    public class Task
+    public class Tarea
     {
         [Key]
         public int Task_ID { get; set; }
@@ -15,7 +15,7 @@ namespace RestoApp.Models
 
         public string Task_Description { get; set; }
 
-        public int Employee_ID { get; set; }
+        public int? Employee_ID { get; set; }
 
     }
 }

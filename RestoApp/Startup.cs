@@ -27,7 +27,7 @@ namespace RestoApp
         {
             services.AddControllersWithViews();
             services.AddDbContext<RestoAppDB>(options =>
-             options.UseSqlServer(Configuration.GetConnectionString("RestoApp")));
+             options.UseSqlServer(Configuration.GetConnectionString("ConnectionRestoApp")));
 
 
         }
