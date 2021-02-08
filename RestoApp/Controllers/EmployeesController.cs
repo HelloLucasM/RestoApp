@@ -59,11 +59,22 @@ namespace RestoApp.Controllers
             return View(employee);
         }
 
+        /*
+
         // GET: Employees/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            
+            ViewBag.Areas = await _context.Areas.ToListAsync();
             return View();
+        }
+
+        */
+
+        public IActionResult Create() {
+
+            ViewBag.Areas = new SelectList(_context.Areas.ToList(), "Area_ID", "Area_Name");
+
+            return View(); 
         }
 
         // POST: Employees/Create

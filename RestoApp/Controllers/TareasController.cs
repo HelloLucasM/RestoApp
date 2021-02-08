@@ -46,6 +46,9 @@ namespace RestoApp.Controllers
         // GET: Tareas/Create
         public IActionResult Create()
         {
+
+            ViewBag.Areas = new SelectList(_context.Areas.ToList(), "Area_ID", "Area_Name");
+            ViewBag.Empleados = new SelectList(_context.Employees.ToList(), "Employee_ID", "First_Name");
             return View();
         }
 
