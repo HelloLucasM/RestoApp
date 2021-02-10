@@ -8,6 +8,9 @@ namespace RestoApp.Models
 {
     public class Employee
     {
+    
+        
+
         [Key]
         public int Employee_ID { get; set; }
 
@@ -18,6 +21,8 @@ namespace RestoApp.Models
         public int Dni { get; set; }
 
         public int Area_ID { get; set; }
+
+
 
 
     }

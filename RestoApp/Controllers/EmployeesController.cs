@@ -7,32 +7,53 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RestoApp.Data;
 using RestoApp.Models;
+using RestoApp.ViewModel;
 
 namespace RestoApp.Controllers
 {
-    public class EmployeesController : Controller
+    public class EmployeesController : Controller 
+        
+        //En el servicio de controller se inyecta 
     {
-        private readonly RestoAppDB _context;
+        private readonly RestoAppDB _context; //Este context es inyectado en el servicio del controller 
+
 
         public EmployeesController(RestoAppDB context)
         {
             _context = context;
         }
 
+        
         // GET: Employees
-        public async Task<IActionResult> Index(string searchString)
+        public IActionResult Index(string searchString)
         {
-            var employees = from m in _context.Employees
-                         select m;
+             var employees = from e in _context.Employees
+                            join r in _context.Areas
+                            on e.Area_ID equals r.Area_ID
+                            select new EmployeeOutput {
+                                Employee_ID = e.Employee_ID,
+                                First_Name = e.First_Name,
+                                Last_Name = e.Last_Name,
+                                Dni = e.Dni,
+                                Area_ID = e.Area_ID,
+                                Area_Name = r.Area_Name
+                            };
+
+            EmployeeViewModel viewModel = new EmployeeViewModel();
+            viewModel.Employees = employees.ToList();
+
+            
 
             if (!String.IsNullOrEmpty(searchString))
             {
                 employees = employees.Where(s => s.First_Name.Contains(searchString));
             }
 
-            return View(await employees.ToListAsync());
+            return View(viewModel);
         }
+        
 
+  
 
         [HttpPost]
         public string Index(string searchString, bool notUsed)
@@ -78,8 +99,7 @@ namespace RestoApp.Controllers
         }
 
         // POST: Employees/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Employee_ID,First_Name,Last_Name,Dni,Area_ID")] Employee employee)
@@ -112,8 +132,7 @@ namespace RestoApp.Controllers
         }
 
         // POST: Employees/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Employee_ID,First_Name,Last_Name,Dni,Area_ID")] Employee employee)
