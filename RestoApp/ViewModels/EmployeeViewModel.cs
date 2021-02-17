@@ -15,7 +15,11 @@ namespace RestoApp.ViewModel
 
         public string Roll { get; set; }
 
-        
+        public TareaOutput Tarea { get; set; }
+
+        public List<TareaOutput> Tareas { get; set; }
+
+
 
 
 

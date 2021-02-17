@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RestoApp.Data;
 using RestoApp.Models;
+using RestoApp.ViewModel;
 
 namespace RestoApp.Controllers
 {
@@ -20,9 +21,25 @@ namespace RestoApp.Controllers
         }
 
         // GET: Tareas
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.Tasks.ToListAsync());
+
+            var tareas = from e in _context.Tasks
+                            join r in _context.Areas
+                            on e.Area_ID equals r.Area_ID
+                            select new TareaOutput
+                            {
+                                Task_ID = e.Task_ID,
+                                Area_ID = e.Area_ID,
+                                Task_Description = e.Task_Description,
+                                Employee_ID = e.Employee_ID,
+                                Area_Name = r.Area_Name
+                            };
+
+            EmployeeViewModel viewModel_B = new EmployeeViewModel();
+            viewModel_B.Tareas = tareas.ToList();
+
+            return View(viewModel_B);
         }
 
         // GET: Tareas/Details/5

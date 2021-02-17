@@ -1,13 +1,13 @@
-﻿@model RestoApp.Models.Employee
+﻿@model RestoApp.Models.Employee;
 
 @{
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Edit</h1>
+<h1>Editar</h1>
 
-<h4>Employee</h4>
+<h4>Empleado</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -15,33 +15,35 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Employee_ID" />
             <div class="form-group">
-                <label asp-for="First_Name" class="control-label"></label>
+                <label asp-for="First_Name" class="control-label">Nombre</label>
                 <input asp-for="First_Name" class="form-control" />
                 <span asp-validation-for="First_Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Last_Name" class="control-label"></label>
+                <label asp-for="Last_Name" class="control-label">Apellido</label>
                 <input asp-for="Last_Name" class="form-control" />
                 <span asp-validation-for="Last_Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Dni" class="control-label"></label>
+                <label asp-for="Dni" class="control-label">Dni</label>
                 <input asp-for="Dni" class="form-control" />
                 <span asp-validation-for="Dni" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Area_ID" class="control-label"></label>
-                <input asp-for="Area_ID" class="form-control" />
+                <label asp-for="Area_ID" class="control-label">Roll</label>
+
+                @Html.DropDownList("Area_ID", ViewBag.Areas as SelectList, "Select area", new { @class = "form-control" })
+
                 <span asp-validation-for="Area_ID" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Volver a la lista</a>
 </div>
 

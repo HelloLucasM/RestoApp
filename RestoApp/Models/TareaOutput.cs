@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RestoApp.Models
 {
-    public class EmployeeOutput : Employee
+    public class TareaOutput : Tarea
     {
         public string Area_Name { get; set; }
 

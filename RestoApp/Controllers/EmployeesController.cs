@@ -11,10 +11,13 @@ using RestoApp.ViewModel;
 
 namespace RestoApp.Controllers
 {
+   
+
     public class EmployeesController : Controller 
         
-        //En el servicio de controller se inyecta 
+        
     {
+
         private readonly RestoAppDB _context; //Este context es inyectado en el servicio del controller 
 
 
@@ -27,6 +30,8 @@ namespace RestoApp.Controllers
         // GET: Employees
         public IActionResult Index(string searchString)
         {
+
+
              var employees = from e in _context.Employees
                             join r in _context.Areas
                             on e.Area_ID equals r.Area_ID
@@ -118,6 +123,8 @@ namespace RestoApp.Controllers
         // GET: Employees/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            ViewBag.Areas = new SelectList(_context.Areas.ToList(), "Area_ID", "Area_Name");
+
             if (id == null)
             {
                 return NotFound();

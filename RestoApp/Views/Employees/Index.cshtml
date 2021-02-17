@@ -1,5 +1,5 @@
 ﻿<!-- model IEnumerable<RestoApp.ViewModel.EmployeeViewModel> -->
- @model RestoApp.ViewModel.EmployeeViewModel
+ @model  RestoApp.ViewModel.EmployeeViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -9,13 +9,13 @@
 <h1>Lista de empleados</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Añadir nuevo empleado</a>
 </p>
 
 <form asp-controller="Employees" asp-action="Index" method="get">
     <p>
-        Title: <input type="text" name="SearchString" />
-        <input type="submit" value="Filter" />
+        <input type="text" name="SearchString" />
+        <input type="submit" value="Buscar" />
     </p>
 </form>
 
@@ -23,19 +23,20 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Employee.First_Name)
+                <!--Html.DisplayNameFor(model => model.Employee.First_Name) -->
+                Nombre
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Employee.Last_Name)
+                <!--Html.DisplayNameFor(model => model.Employee.Last_Name) -->
+                Apellido
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Employee.Dni)
+                <!--Html.DisplayNameFor(model => model.Employee.Dni) -->
+                Dni
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Employee.Area_ID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Employee.Area_Name)
+                <!--Html.DisplayNameFor(model => model.Employee.Area_Name) -->
+                Roll
             </th>
            
             <th></th>
@@ -55,16 +56,13 @@
                 @Html.DisplayFor(modelItem => item.Dni)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Area_ID)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Area_Name)
             </td>
 
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Employee_ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Employee_ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Employee_ID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Employee_ID">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.Employee_ID">Detalles</a> |
+                <a asp-action="Delete" asp-route-id="@item.Employee_ID">Eliminar</a>
             </td>
         </tr>
         }
